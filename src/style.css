@@ -14,33 +14,49 @@
     box-sizing: border-box;
 }
 
+.smooth-scroll, html, body {
+    scroll-behavior: smooth;
+}
+
 html {
     font-family: Orbitron, "Open Sans", sans-serif;
     color: white;
+    letter-spacing: 2px;
 }
 
 h1 {
-    background-image: linear-gradient(90deg, #111 , #fff, #111);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    text-shadow: 0px 0px 10px #7DF9FF;
+    color: #fff;
+    text-shadow:
+        0 0 7px #fff,
+        0 0 10px #fff,
+        0 0 21px #fff,
+        0 0 42px #04D9FF,
+        0 0 82px #04D9FF,
+        0 0 92px #04D9FF,
+        0 0 102px #04D9FF,
+        0 0 151px #04D9FF;
     animation: fade-in 5s;
 }
 
 h2 {
     font-size: 30px;
-    background-image: linear-gradient(90deg, #fff , #fff, #fff);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    text-shadow: 5px 5px 10px #7DF9FF;
+    color: #fff;
+    text-shadow:
+        0 0 7px #fff,
+        0 0 10px #fff,
+        0 0 21px #fff,
+        0 0 42px #04D9FF,
+        0 0 82px #04D9FF,
+        0 0 92px #04D9FF,
+        0 0 102px #04D9FF,
+        0 0 151px #04D9FF;
 }
 
 @keyframes fade-in {
     0% { opacity: 0; }
     100% { opacity: 1; }
 }
+
 
 /* End of main element config */
 
@@ -59,19 +75,90 @@ body {
 }
 
 nav {
-    background-color: #03001C;
+    background-color: #5078f2;
+    background-image: linear-gradient(315deg, #5078f2 0%, #efe9f4 74%);
     position: fixed;
     width: 100%;
     height: 41px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 1.5rem;
+    display: grid;
+    grid-template-columns: 12vw 59.99vw 28vw;
     z-index: 11;
+}
+
+.dark-mode > nav {
+    background-color: #2234ae;
+    background-image: linear-gradient(315deg, #2234ae 0%, #191714 74%);
+}
+
+.dark-mode-switch {
+    width: 10vw;
+    margin-left: 2vw;
+    grid-column: 1;
+    align-self: center;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 22px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #2196f3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(14px);
+    -ms-transform: translateX(14px);
+    transform: translateX(14px);
+}
+
+.slider.circle {
+    border-radius: 34px;
+}
+
+.slider.circle:before {
+    border-radius: 50%;
 }
 
 .hamburger {
     display: none;
+    grid-column: 1;
 }
 
 .bar {
@@ -85,17 +172,19 @@ nav {
 }
 
 nav > ul {
-    /* margin-left: auto; */
-    margin-right: 16px;
+    grid-column: 3;
+    justify-self: end;
+    margin-right: 1.3vw;
+    align-self: center;
+    margin-bottom: 5px;
 }
 
 nav > ul > li {
-
     display: inline-block;
 }
 
 .navLinks {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: bolder;
     color: #475569;
 }
@@ -106,15 +195,18 @@ nav > ul > li {
 
 #navBanner {
     max-width: 476px;
-    margin-left: 500px;
+    justify-self: center;
+    margin-left: 13vw;
+    grid-column: 2;
 }
 /* End of nav-bar elements config */
 
 /* Start of header elements config */
 header {
     background: url(../assets/bg_top_stars.jpg);
+    background-size: cover;
     text-align: center;
-    height: 320px;
+    height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -122,8 +214,13 @@ header {
     gap: 50px;
 }
 
+header > p {
+    text-align: center;
+    margin: 0 4vw;
+}
+
 #description {
-    height: 620px;
+    height: 750px;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../assets/orbit.jpg) repeat-x;
     background-position: top center;
     background-size: cover;
@@ -137,6 +234,7 @@ header {
 #description > p {
     text-align: center;
     padding: 0 200px;
+    margin: 0 4vw;
 }
 /* End of header elements config */
 
@@ -250,6 +348,11 @@ header {
     align-items: center;
     justify-content: center;
     gap: 4vw;
+    background-color: #ffffff;
+    background-image: linear-gradient(315deg, #ffffff 0%, #1b2845 74%);
+}
+
+.dark-mode #grid-arranged-features {
     background-color: #130f40;
     background-image: linear-gradient(315deg, #130f40 0%, #000000 74%);
 }
@@ -376,8 +479,8 @@ header {
 
 /* Start of the game acquiring information section elements config */
 #whereToGet {
-    background-color: #7a7adb;
-    background-image: linear-gradient(315deg, #7a7adb 0%, #170e13 74%);
+    background-color: #6a93cb;
+    background-image: linear-gradient(315deg, #6a93cb 0%, #a4bfef 74%);
     height: 660px;
     display: flex;
     flex-direction: column;
@@ -386,8 +489,18 @@ header {
     gap: 50px;
 }
 
+.dark-mode #whereToGet {
+    background-color: #7a7adb;
+    background-image: linear-gradient(315deg, #7a7adb 0%, #170e13 74%);
+}
+
 #whereToGet > h2{
     text-align: center;
+}
+
+#whereToGet > p {
+    text-align: center;
+    margin: 0 3vw;
 }
 
 .dev-links {
@@ -397,8 +510,8 @@ header {
 
 /* Start of the registration forms section elements config */
 #registrationForms {
-    background-color: #4d4855;
-    background-image: linear-gradient(147deg, #4d4855 0%, #000000 74%);
+    background-color: #b1bfd8;
+    background-image: linear-gradient(315deg, #b1bfd8 0%, #6782b4 74%);
     height: 1280px;
     display: flex;
     flex-wrap: wrap;
@@ -408,15 +521,20 @@ header {
     
 }
 
+.dark-mode #registrationForms {
+    background-color: #4d4855;
+    background-image: linear-gradient(147deg, #4d4855 0%, #000000 74%);
+}
+
 #registrationForms > h2 {
     text-align: center;
 }
 
 #registrationForms > form {
-    width: 600px;
+    width: 680px;
     background-color: white;
     border-radius: 18px;
-    height: 920px;
+    height: 1060px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -433,12 +551,18 @@ header {
 }
 
 .radio-button {
+    width: 80%;
     display: flex;
-    gap: 10px;
+    justify-content: space-around;
+}
+
+.radio-wrap {
+    display: flex;
+    gap: 8px;
 }
 
 .checkbox {
-    width: 480px;
+    width: 80%;
     display: flex;
     justify-content: flex-start;
     gap: 10px;
@@ -466,20 +590,26 @@ footer {
 }
 /* End of the footer section elements config */
 
-@media only screen and (max-width: 1532px) {
+@media only screen and (max-width: 1023px) {
     .nav-links {
         position: fixed;
         left: -100%;
         top: 2.55rem;
         display: flex;
         flex-direction: column;
-        background-color: #03001C;
+        background-color: #5078f2;
+        background-image: linear-gradient(315deg, #5078f2 0%, #efe9f4 74%);
+        gap: 5px;
         width: 100%;
-        border-radius: 10px;
         text-align: center;
         transition: 0.3s;
         box-shadow: 
             0 10px 27px rgba(0, 0, 0, 0.05);
+    }
+
+    .dark-mode .nav-links {
+        background-color: #2234ae;
+        background-image: linear-gradient(315deg, #2234ae 0%, #191714 74%);
     }
     
     .nav-links.active {
@@ -493,6 +623,11 @@ footer {
     .hamburger {
         display: block;
         cursor: pointer;
+        grid-column: 1;
+        grid-row: 1;
+        justify-self: baseline;
+        margin-left: 20px;
+        margin-top: 5px;
     }
 
     .bar {
@@ -511,66 +646,18 @@ footer {
         transform: translateY(-8px) rotate(-45deg);
     }
 
-    #navBanner {
-        margin-left: 0;
-        margin-right: 400px;
-    }
-}
-
-@media only screen and (max-width: 1024px) {
-    .nav-links {
-        position: fixed;
-        left: -100%;
-        top: 2.55rem;
-        display: flex;
-        flex-direction: column;
-        background-color: #03001C;
-        width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        box-shadow: 
-            0 10px 27px rgba(0, 0, 0, 0.05);
-    }
-    
-    .nav-links.active {
-        left: 0;
-    }
-
-    .navLinks {
-        margin: 2.5rem 0;
-    }
-
-    .hamburger {
-        display: block;
-        cursor: pointer;
-    }
-
-    .bar {
-        background-color: white;
-    }
-
-    .hamburger.active .bar:nth-child(2) {
-        opacity: 0;
-    }
-
-    .hamburger.active .bar:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-    }
-
-    .hamburger.active .bar:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
+    .dark-mode-switch {
+        grid-column: 3;
+        justify-self: end;
     }
 
     #navBanner {
-        margin-left: 250px;
+        grid-column: 2;
+        grid-row: 1;
     }
 
     header {
         align-items: center;
-    }
-
-    header > h1, p{
-        width: 584px;
     }
 
     #description > p{
@@ -637,20 +724,20 @@ footer {
         transform: translateY(-8px) rotate(-45deg);
     }
 
-    #navBanner {
-        margin-left: 100px;
-    }
-
     header {
         align-items: center;
     }
 
-    header > h1, p{
-        width: 584px;
-    }
-
     #description > p{
         padding: 0;
+    }
+
+    #carousel-heroes {
+        height: 95vw;
+    }
+
+    .hero-content .hero-box {
+        height: 95vw;
     }
 
     #whereToGet {
@@ -668,31 +755,34 @@ footer {
         padding-right: 0;
         padding-left: 0;
         max-width: 100%;
+        grid-template-columns: 12vw 70.99vw 17vw;
+    }
+
+    .hamburger {
+        margin-left: 3vw;
+    }
+
+    .dark-mode-switch {
+        grid-column: 2;
     }
 
     #navBanner {
-        margin-right: 0;
+        grid-column: 3;
+        margin-right: 3vw;
         margin-left: 0;
-    }
-
-    header > h1 {
-        width: 320px;
-    }
-
-    header > p {
-        width: 420px;
+        justify-self: end;
     }
 
     #description > h2{
         text-align: center;
     }
 
-    #description > p {
-        width: 420px;
+    #carousel-heroes {
+        height: 132vw;
     }
-    
-    #grid-arranged-features > h2 {
-        width: 320px;
+
+    .hero-content .hero-box {
+        height: 132vw;
     }
 
     .grid-container {
@@ -752,70 +842,13 @@ footer {
         height: 1040px;
     }
 
-    #whereToGet > p {
-        width: 300px;
-        text-align: center;
+    .radio-button {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    #registrationForms {
-        height: 1280px;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-evenly;
-        
-    }
-    
-    #registrationForms > h2 {
-        text-align: center;
-    }
-    
     #registrationForms > form {
-        width: 320px;
-        background-color: white;
-        border-radius: 18px;
-        height: 1080px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-    }
-    
-    #registrationForms > form > div {
-        width: 310px;
-    }
-    
-    .form-text {
-        font-family: 'Orbitron', sans-serif;
-        color: black;
-        width: 80%;
-        border-radius: 5px;
-        font-weight: bolder;
-    }
-    
-    .radio-button {
-        display: flex;
-        gap: 10px;
-    }
-    
-    .checkbox {
-        width: 480px;
-        display: flex;
-        justify-content: flex-start;
-        gap: 10px;
-        margin-top: 10px;
-    }
-    
-    button[type="submit"] {
-        background-color: white;
-        border: 1px solid black;
-        border-radius: 4px;
-        width: 80%;
-        padding: 6px 12px;
-        font-weight: bold;
-        cursor: pointer;
+        width: 90vw;
     }
 }
 
@@ -840,16 +873,9 @@ footer {
 }
 
 @media only screen and (max-width: 583px) {
-    header > p {
-        width: 300px;
-    }
-
-    #description > p {
-        width: 300px;
-    }
 
     .hero-content .hero-box .content p {
-        width: 300px;
+        width: 70vw;
     }
 
     #carousel-heroes {
@@ -863,20 +889,26 @@ footer {
 
 @media only screen and (max-width: 535px) {
     #carousel-heroes {
-        height: 188vw;
+        height: 230vw;
     }
 
     .hero-content .hero-box {
-        height: 188vw;
+        height: 230vw;
     }
 }
 
 @media only screen and (max-width: 420px) {
     #carousel-heroes {
-        height: 250vw;
+        height: 400vw;
     }
 
     .hero-content .hero-box {
-        height: 250vw;
+        height: 400vw;
+    }
+}
+
+@media only screen and (max-width: 370px) {
+    #whereToGet {
+        height: 1180px;
     }
 }

@@ -11,6 +11,22 @@ const deliveryMethod = document.getElementsByName("deliveryMethod");
 const addition = document.getElementsByName("addition");
 const lastRequirement = document.getElementsByName("lastRequirement");
 
+// Set initial state
+if (localStorage.getItem("darkMode") === "true") {
+    document.getElementById("dark-mode-checkbox").checked = true;
+    document.body.classList.add("dark-mode");
+}
+
+// Dark mode toggle
+const toggleDarkMode = () => {
+    document.body.classList.toggle("dark-mode");
+    if (!document.getElementById("dark-mode-checkbox").checked) {
+        localStorage.setItem("darkMode", false);
+    } else {
+        localStorage.setItem("darkMode", true);
+    }
+}
+
 // hamburger button
 const mobileMenu = () => {
     hamburger.classList.toggle("active");
